@@ -5,14 +5,25 @@ services:
     image: jenkins/jenkins:lts
     ports:
       - 18080:8080
-      - 50000:50000
     volumes:
       - ./jenkins_home:/var/jenkins_home
     links:
       - jenkins_agent01
+      - jenkins_agent02
 
   jenkins_agent01:
     container_name: jenkins_agent01
     image: jenkins/ssh-slave
+    environment:
+      - JENKINS_SLAVE_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWK9GyQXotRTFmiIOpGNoI1S4y/EyqXXtxmrX3atOtwQ1+E0MfF+QUPb8HJlH0SI2ZrGLpiN7incY+8MdJ+ZmOz+5D16wbA36Y+Q5jE8+qzRCIEAqprQzSPtSaMDrEexE4P+zkPqYJ/ydMq65KeHTgXjy4DbzsknRWUYucURMaqJ4gQCGx5IZs3mqGv043suBOwS5CXkvFfzGxVq0Z/HGK+mli/UsOwLjAq5vs8P9P22eOghQh6Z6EUfjs9CdBb/nflt3PbsXpP6bRwrpdY2AfYThC90bRM1JhpPYXq3r+jn82o1XTKVT1SQkU/TAVD5PMy7fcT4dHtq/JRk0z7X1B
+
+  jenkins_agent02:
+    container_name: jenkins_agent02
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWK9GyQXotRTFmiIOpGNoI1S4y/EyqXXtxmrX3atOtwQ1+E0MfF+QUPb8HJlH0SI2ZrGLpiN7incY+8MdJ+ZmOz+5D16wbA36Y+Q5jE8+qzRCIEAqprQzSPtSaMDrEexE4P+zkPqYJ/ydMq65KeHTgXjy4DbzsknRWUYucURMaqJ4gQCGx5IZs3mqGv043suBOwS5CXkvFfzGxVq0Z/HGK+mli/UsOwLjAq5vs8P9P22eOghQh6Z6EUfjs9CdBb/nflt3PbsXpP6bRwrpdY2AfYThC90bRM1JhpPYXq3r+jn82o1XTKVT1SQkU/TAVD5PMy7fcT4dHtq/JRk0z7X1B
