@@ -27,11 +27,11 @@ pipeline {
                 sh 'curl -X GET "http://localhost:18888/api/usr/1" -H "accept: */*"'
             }
         }
-        post {
-            always {
-                echo 'shutdown'
-                sh 'docker-compose down'
-            }
+    }
+    post {
+        always {
+            echo 'shutdown'
+            sh 'docker-compose down'
         }
     }
 }
