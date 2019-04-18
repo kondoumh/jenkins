@@ -16,5 +16,25 @@ $ docker-compose up -d
 
 ```
 $ fly --target tutorial login --concourse-url http://127.0.0.1:8080
+$ fly --target tutorial sync
+```
+
+## run task
 
 ```
+$ fly -t tutorial execute -c task.yml
+$ fly -t tutorial e -c task.yml
+$ fly -t tutorial e -c task.yml -i input-name=path
+```
+
+## set pipeline
+
+```
+$ fly -t tutorial set-pipeline -c pipeline.yml -p hello-world
+
+$ fly -t tutorial unpause-pipeline -p hello-world
+$ fly -t tutorial up -p hello-world
+
+$ fly -t tutorial unpause-job --job hello-world/job-hello-world
+```
+
