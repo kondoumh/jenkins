@@ -31,10 +31,33 @@ $ fly -t tutorial e -c task.yml -i input-name=path
 
 ```
 $ fly -t tutorial set-pipeline -c pipeline.yml -p hello-world
+# fly sp -t tutorial -c pipeline.yml -p hello-world
 
 $ fly -t tutorial unpause-pipeline -p hello-world
 $ fly -t tutorial up -p hello-world
 
 $ fly -t tutorial unpause-job --job hello-world/job-hello-world
+```
+
+## watch output
+
+```
+$ fly -t tutorial watch -j hello-world/job-hello-world
+
+$ fly -t tutorial builds
+```
+
+## trigger jobs
+
+```
+$ fly -t tutorial trigger-job -j hello-world/job-hello-world
+$ fly -t tutorial watch -j hello-world/job-hello-world
+$ fly -t tutorial triiger-job -j hello-world/job-hello-world -w
+```
+
+## destroy pipelines
+
+```
+$ fly -t tutorial destroy-pipeline -p hello-world
 ```
 
