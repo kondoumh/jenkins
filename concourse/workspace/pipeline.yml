@@ -5,11 +5,17 @@ resources:
     source:
       uri: https://github.com/kondoumh/sb-sample-service.git
       branch: master
+  - name: pipelines
+    type: git
+    source:
+      uri: https://github.com/kondoumh/pipelines.git
+      branch: master
 
 jobs:
 - name: build
   public: true
   plan:
   - get: sb-sample-service
+  - get: pipelines
   - task: Build project
-    file: sb-sample-service/task/build.yml
+    file: pipelines/concourse/workspace/tasks/build.yml
