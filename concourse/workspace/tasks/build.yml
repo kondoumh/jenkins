@@ -5,10 +5,10 @@ image_resource:
   source: {repository: java, tag: openjdk-8-alpine}
 
 inputs:
-  - name sb-sample-service
+  - name: pipelines
 
 outputs:
   - name: build-output
 
 run:
-  path: "sb-sumple-service/tasks/build.sh"
+  path: "pipelines/concourse/workspace/tasks/build.sh"
