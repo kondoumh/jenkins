@@ -12,10 +12,13 @@ resources:
       branch: master
 
 jobs:
-- name: build
+- name: build-sb-service
   public: true
   plan:
   - get: sb-sample-service
   - get: pipelines
   - task: Build project
     file: pipelines/concourse/workspace/tasks/build.yml
+  - task: Deploy service
+    privileged: true
+    file: pipelines/concourse/workspace/tasks/deploy.yml

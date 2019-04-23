@@ -2,14 +2,17 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: java, tag: openjdk-8-alpine}
+  source: {repository: java, tag: 8}
 
 inputs:
   - name: pipelines
   - name: sb-sample-service
 
 outputs:
-  - name: build-output
+  - name: sb-sample-service
+
+caches:
+  - path: .m2/
 
 run:
   path: "pipelines/concourse/workspace/tasks/build.sh"
