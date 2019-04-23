@@ -1,3 +1,4 @@
-$!bin/sh
-set -e
-sb-sample-service/mvnw package
+#!/bin/sh -xe
+ls
+cd sb-sample-service
+./mvnw package
