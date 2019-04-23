@@ -12,7 +12,7 @@ resources:
       branch: master
 
 jobs:
-- name: build-sb-service
+- name: build-sb-sample
   public: true
   plan:
   - get: sb-sample-service
